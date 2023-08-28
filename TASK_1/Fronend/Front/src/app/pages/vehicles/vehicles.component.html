@@ -3,58 +3,64 @@
 
 <ng-template #content let-modal>
 
-    <div class="bg-aliceblue modal-div">
-        <div class="modal-header">
-            <h4>Add Vehicle</h4>
-            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-
-        <div class="modal-body">
-            <div>
-
-                <form class="mt-3 c-form" [formGroup]="addVehicleForm" (ngSubmit)="onSubmit(modal)" name="newForm">
-
-                    <label for="registrationNumber">Name : </label>
-                    <input id="registrationNumber" name="registrationNumber" type="text" placeholder="registrationNumber" formControlName="registrationNumber" />
-
-                    <label for="vehicleType">Vehicle Type : </label>
-                    <input id="vehicleType" name="vehicleType" type="text" placeholder="vehicleType" formControlName="vehicleType" />
-                    <label for="city">City : </label>
-                    <input id="city" name="price" type="text" placeholder="City" formControlName="city" />
-
-                    <button type="submit" class="btn btn-primary mt-2">
-                        Submit
-                    </button>
-                </form>
-            </div>
-        </div>
-
+  <div class="bg-aliceblue modal-div">
+    <div class="modal-header">
+      <h4>Add Vehicle</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
+
+    <div class="modal-body">
+      <div>
+
+        <form class="mt-3 c-form" [formGroup]="addVehicleForm" (ngSubmit)="onSubmit(modal)" name="newForm">
+
+          <label for="registrationNumber">Name : </label>
+          <input id="registrationNumber" name="registrationNumber" type="text" placeholder="registrationNumber"
+            formControlName="registrationNumber" />
+
+          <label for="vehicleType">Vehicle Type : </label>
+          <select id="vehicleType" name="vehicleType" type="text" placeholder="vehicleType"
+            formControlName="vehicleType">
+            <option value="truck">Truck</option>
+            <option value="bike">Bike</option>
+
+          </select>
+          <label for="city">City : </label>
+          <input id="city" name="price" type="text" placeholder="City" formControlName="city" />
+
+          <button type="submit" class="btn btn-primary mt-2">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
 </ng-template>
 
 
 <div class="header pb-8 pt-5 pt-md-8">
-    <div class="container-fluid">
-      <div class="header-body">
-        <!-- Card stats -->
-        <div class="row">
-          <div class="col-xl-3 col-lg-6" *ngFor="let vehicle of allVehicle">
-            <div class="card card-stats mb-4 mb-xl-0">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">
-                        {{vehicle.vehicleType}}
-                    </h5>
-                    <span class="h2 font-weight-bold mb-0"> {{vehicle.registrationNumber}}</span>
-                  </div>
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-3 col-lg-6" *ngFor="let vehicle of allVehicle">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
                   <div class="text-end">
-
-                      <span>{{vehicle.city}}</span>
-                    </div>
+  
+                    <span>{{vehicle.city}}</span>
+                  </div>
+                  <h5 class="card-title text-uppercase text-muted mb-0">
+                    {{vehicle.vehicleType}}
+                  </h5>
+                  <span class="h2 font-weight-bold mb-0"> {{vehicle.registrationNumber}}</span>
                 </div>
+                  <button *ngIf="vehicle.aciveOrderCount >0" class="btn btn-primary mt-3" (click)="OrderDelivered(vehicle)" >delivered 1 of {{vehicle.aciveOrderCount}}</button>
               </div>
             </div>
           </div>
@@ -62,3 +68,4 @@
       </div>
     </div>
   </div>
+</div>

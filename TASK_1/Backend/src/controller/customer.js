@@ -6,9 +6,11 @@ class customerClass  {
     static create = async function (req,res){
         try{
 
+            console.log('cust create api');
             let item = new Customer(req.body)
 
             await item.save()
+            console.log(item);
 
             res.status(200).send({status:"Success", data:item})
 
@@ -16,7 +18,7 @@ class customerClass  {
 
         }catch(error){
 
-            cosole.log(error.message)
+            console.log(error.message)
             res.status(200).send({status:"Failed",message:"Something Went Wrong"})
 
         }
@@ -36,7 +38,7 @@ class customerClass  {
 
         }catch(error){
             
-            cosole.log(error.message)
+            console.log(error.message)
             res.status(200).send({status:"Failed",message:"Something Went Wrong"})
 
         }
@@ -57,7 +59,7 @@ class customerClass  {
 
         }catch(error){
             
-            cosole.log(error.message)
+            console.log(error.message)
             res.status(200).send({status:"Failed",message:"Something Went Wrong"})
 
         }

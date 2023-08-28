@@ -47,16 +47,31 @@ class vehicleClass {
     static getcities = async function (req, res) {
         try {
 
-            let items = await Vehicle.find({},{city:1})
+            let items = await Vehicle.aggregate([
+                {
+                    $group: {
+                        _id: null,
+                        cities: { $addToSet: "$city" } // Collect unique cities in an array
+                    }
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        cities: 1
+                    }
+                }
+
+            ])
+            console.log(items);
 
 
-            res.status(200).send({ status: "Success", data: items })
+            res.status(200).send({ status: "Success", data: items[0].cities})
 
 
 
         } catch (error) {
 
-            cosole.log(error.message)
+            console.log(error)
             res.status(200).send({ status: "Failed", message: "Something Went Wrong" })
 
         }
@@ -82,6 +97,22 @@ class vehicleClass {
         }
 
 
+    }
+    static getCityVehicles = async function (req,res) {
+
+        try{
+            let vehicles = await Vehicle.find({city:req.query.city
+                ,aciveOrderCount:{$lt:2}
+            })
+
+            res.status(200).send({status:"success",data:vehicles})
+
+        }catch(error){
+            console.log(error)
+            res.status(200).send({status:"failed",message:"something went wrong"})
+
+        }
+        
     }
 }
 

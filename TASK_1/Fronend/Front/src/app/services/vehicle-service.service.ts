@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 
 import { Router } from "@angular/router";
 import { environment } from 'src/environments/environment';
@@ -19,6 +19,12 @@ export class VehicleServiceService {
   getCities(){
     return this.http.get(`${environment.URL}/get/vehicle/cities`);
 
+
+  }
+  getVehiclesOfCity(city:any){
+    const params = {city}
+
+    return this.http.get(`${environment.URL}/get/cityVehicles?city=${city}`);
 
   }
 }

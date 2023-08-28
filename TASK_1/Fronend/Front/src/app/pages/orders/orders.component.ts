@@ -8,12 +8,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent {
-  public addItemForm :FormGroup
-  public allitems = [1,2,3]
+  public createOrderForm :FormGroup
+  public allitems:any = []
   constructor(
     private modelService: NgbModal
   ) {
-    this.addItemForm = new FormGroup({
+    this.createOrderForm = new FormGroup({
       name : new FormControl(null,[Validators.required]),
       price : new FormControl(null,[Validators.required])
     })
@@ -28,9 +28,10 @@ export class OrdersComponent {
     this.modelService.open(content)
 
   }
-  onAddItem(modal:any) {
+  onSubmit(modal:any) {
 
     modal.close('Close click')
 
   }
+  
 }

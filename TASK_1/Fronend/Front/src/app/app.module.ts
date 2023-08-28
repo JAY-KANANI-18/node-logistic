@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorInterceptor } from './services/interceptor/auth-interceptor.interceptor';
+import { EllipsisPipe } from './services/pipes/ellipsis.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AuthInterceptorInterceptor } from './services/interceptor/auth-intercep
     ItemsComponent,
     CustomersComponent,
     VehiclesComponent,
-    OrdersComponent
+    OrdersComponent,
+    EllipsisPipe
   ],
   imports: [
     BrowserModule,

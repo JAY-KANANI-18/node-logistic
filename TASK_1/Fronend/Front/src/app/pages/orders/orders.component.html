@@ -14,7 +14,7 @@
         <div class="modal-body">
             <div>
 
-                <form class="mt-3 c-form" [formGroup]="addItemForm" (ngSubmit)="onAddItem(modal)" name="newForm">
+                <form class="mt-3 c-form" [formGroup]="createOrderForm" (ngSubmit)="onSubmit(modal)" name="newForm">
 
                     <label for="name">Name : </label>
                     <input id="name" name="name" type="text" placeholder="name" formControlName="name" />

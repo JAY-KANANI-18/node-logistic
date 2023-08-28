@@ -8,18 +8,21 @@ const OrderSchema = new mongoose.Schema(
       require: true,
       ref: "item",
     },
+
     customerId :{
         type:mongoose.Schema.Types.ObjectId,
         require: true,
         ref: "customer",
 
     },
+
     vehicleId:{
         type:mongoose.Schema.Types.ObjectId,
         require: true,
         ref: "vehicle",
 
     },
+
     isDelivered:{
         type:Boolean,
         default:false
@@ -29,7 +32,7 @@ const OrderSchema = new mongoose.Schema(
     price:{
       type:Number,
       required:true,
-
+      
     },
   },
     { timestamps: true ,validateBeforeSave: true }

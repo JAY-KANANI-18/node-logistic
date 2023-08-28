@@ -5,12 +5,18 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
+var autoIncrement = require('mongoose-id-autoincrement');
 
 
 
 
 mongoose.set("strictQuery", true);
 mongoose.connect("mongodb://127.0.0.1:27017/node-logistic");
+autoIncrement.initialize(mongoose.connection);
+
+
+
+
 
 const expressConfig =  require("./src/express/express");
 
@@ -26,6 +32,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 expressConfig.init(app)
+
 
 
 
